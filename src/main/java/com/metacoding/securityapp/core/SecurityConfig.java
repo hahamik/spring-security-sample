@@ -19,6 +19,7 @@ public class SecurityConfig {
         // csrf 필터 비활성화
         http.csrf(configure -> configure.disable());
 
+        // 만약 다른 페이지 요청하다가 여기로 쫒겨나면 인증 후 그 화면으로 다시 보내준다(return).
         http.formLogin(form -> form
                 .loginPage("/login-form") // 로그인 페이지는 여기로
                 .loginProcessingUrl("/login") // 여기로 요청-> 인가를 처리하는 url 설정, username=ssar&password=1234 
