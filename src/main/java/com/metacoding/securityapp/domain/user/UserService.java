@@ -30,6 +30,7 @@ public class UserService implements UserDetailsService {
     public void 회원가입(String username, String password, String email) {
         // 스프링 시큐리티는 password가 encode가 안되어 있으면 허가를 안함 그래서 password 더미를 암호화해서 넣어야 한다.
         String encPassword = bCryptPasswordEncoder.encode(password);
-        userRepository.save(username, encPassword, email);
+        String roles = "USER";
+        userRepository.save(username, encPassword, email, roles);
     }
 }

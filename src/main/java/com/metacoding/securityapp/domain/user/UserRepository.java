@@ -23,11 +23,12 @@ public class UserRepository {
         }
     }
 
-    public void save(String username, String password, String email) {
-        em.createNativeQuery("insert into user_tb (username, password, email) values (?, ?, ?)")
+    public void save(String username, String password, String email, String roles) {
+        em.createNativeQuery("insert into user_tb (username, password, email,roles) values (?, ?, ?, ?)")
                 .setParameter(1, username)
                 .setParameter(2, password)
                 .setParameter(3, email)
+                .setParameter(4, roles)
                 .executeUpdate();
     }
 }
