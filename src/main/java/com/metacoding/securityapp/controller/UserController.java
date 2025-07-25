@@ -1,6 +1,6 @@
 package com.metacoding.securityapp.controller;
 
-import com.metacoding.securityapp.domain.user.PrincipalDetails;
+import com.metacoding.securityapp.domain.user.User;
 import com.metacoding.securityapp.domain.user.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,10 +16,8 @@ public class UserController {
     }
 
     @GetMapping("/main")
-    public String main(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-        String username = principalDetails.getUser().getUsername();
-        System.out.println("=============");
-        System.out.println(username);
+    public String main(@AuthenticationPrincipal User user) {
+        System.out.println(user.getUsername());
         return "main";
     }
 

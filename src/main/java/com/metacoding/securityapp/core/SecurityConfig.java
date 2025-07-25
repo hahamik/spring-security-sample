@@ -21,9 +21,11 @@ public class SecurityConfig {
 
         // 만약 다른 페이지 요청하다가 여기로 쫒겨나면 인증 후 그 화면으로 다시 보내준다(return).
         http.formLogin(form -> form
-                .loginPage("/login-form") // 로그인 페이지는 여기로
-                .loginProcessingUrl("/login") // 여기로 요청-> 인가를 처리하는 url 설정, username=ssar&password=1234 
-                .defaultSuccessUrl("/main")); // 성공하면 여기로
+                        .loginPage("/login-form") // 로그인 페이지는 여기로
+                        .loginProcessingUrl("/login") // 여기로 요청-> 인가를 처리하는 url 설정, username=ssar&password=1234
+//                .usernameParameter() //<< 여기다가 email이라고 적으면 username의 key값을 변경 가능함
+                        .defaultSuccessUrl("/main")
+        ); // 성공하면 여기로
 
         http.authorizeHttpRequests(
                 authorize -> authorize

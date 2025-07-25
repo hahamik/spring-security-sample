@@ -19,17 +19,11 @@ public class UserService implements UserDetailsService {
     }
 
     // UserDetailsService의 메서드인 loadUserByUsername를 재정의 해서 사용한다. 내부에서 자기가 알아서 비밀번호 비교해줌.
+    // UserDetailsService는 UserDetail을 반환하기 때문에 해당 UserDetail로 반환하기 위해서 PrincipalDetail class를 생성한다.
+    // PrincipalDetail는 UserDetail을 implement 함.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // UserDetailsService는 UserDetail을 반환하기 때문에 해당 UserDetail로 반환하기 위해서 PrincipalDetail class를 생성한다.
-        // PrincipalDetail는 UserDetail을 implement 함.
-        User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            return null;
-        } else {
-            return new PrincipalDetails(user);
-        }
+        return userRepository.findByUsername(username);
     }
 
     @Transactional
